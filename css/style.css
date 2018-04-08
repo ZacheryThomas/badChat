@@ -1,0 +1,30 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font: 13px Helvetica, Arial; }
+div input { 
+    border: 0;
+    padding: 10px;
+    width: 100%;
+    background: transparent;
+    border: none;
+}
+
+#inputs {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+    width: 200px;
+}
+
+#floater { 
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 30px;
+}
+
+.floaterText { opacity: 0; }
