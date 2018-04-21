@@ -1,4 +1,4 @@
-SOCKET_URL  = 'http://localhost'
+SOCKET_IP  = 'localhost'
 SOCKET_PORT = 80
 TEXT_ANIM_TIME   = 2000
 VOICES = ["UK English Female", "UK English Male", "US English Female",
@@ -8,10 +8,10 @@ VOICES = ["UK English Female", "UK English Male", "US English Female",
 COLORS = ["Crimson", "BlueViolet", "Blue", "DarkOrange", "DeepPink", "Fuchsia", "Gold", "LightSalmon", "LimeGreen",
           "Orange", "Yellow"
          ]
+TILT_MAX = 20
 
 $(document).ready(function() {
-
-    var socket = io.connect(SOCKET_URL + ':' + SOCKET_PORT)
+    var socket = io.connect(SOCKET_IP + ':' + SOCKET_PORT)
 
     $(document).mousemove( function(event) {
         $("#messageField").focus()
@@ -47,7 +47,8 @@ $(document).ready(function() {
 
         x = Math.floor(Math.random() * ((mwidth - padding) - padding) + padding);
         y = Math.floor(Math.random() * ((mheight - padding) - padding) + padding);
-        ele.css({top: y, left: x, position: 'absolute'});
+        roto = Math.floor(Math.random() * (TILT_MAX - -TILT_MAX) + -TILT_MAX);
+        ele.css({top: y, left: x, position: 'absolute', transform: 'rotate(' + roto + 'deg)'});
     }
 
     function animEle(ele){
@@ -76,6 +77,11 @@ $(document).ready(function() {
         var voice = randomFromList(VOICES);
         console.log(voice)
         responsiveVoice.speak(msg, voice)
+    });
+
+    socket.on('num connections', function(msg){
+        console.log(msg)
+        $("#num_chatter").text(msg)
     });
 
 });
