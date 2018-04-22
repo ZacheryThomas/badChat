@@ -1,80 +1,138 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-@media only screen and (min-width: 768px){
-    body { font: 13px Helvetica, Arial; }
-    div input { 
-        border: 0;
-        padding: 10px;
-        width: 100%;
-        background: transparent;
-        border: none;
-    }
-    
-    #inputs {
-        position: absolute;
-        top: 90%;
-        left: 50%;
-        margin-top: -50px;
-        margin-left: -100px;
-        width: 200px;
-        height: 100px;
-    }
-    
-    #chatcount {
-        position: absolute;
-        top: 95%;
-        left: 0%;
-        width: 200px;
-    }
-    
-    #floater { 
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        font-family: "Comic Sans MS", "Comic Sans", cursive;
-        font-size: 75px;
-    }
+body { font: 20px Helvetica, Arial; }
+#card { 
+    border: 0;
+    padding: 10px;
+    background: transparent;
+    border: none;
+
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -20%;
+    width: 40%;
+    height: 100px;
 }
 
-@media only screen and (max-width: 768px){
-    body { font: 30px Helvetica, Arial; }
-    div input { 
+#chatcount {
+    padding-bottom: 10px;    
+}
+
+input {
+    width: 100%;
+    font-size: 20px;
+}
+
+#floater {
+    font-size: 75px;
+}
+
+#floater { 
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+.floaterText { opacity: 0; }
+
+/*
+/
+/   MOBILE CSS
+/
+*/
+
+/* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+and (min-device-width: 320px) 
+and (max-device-width: 568px)
+and (-webkit-min-device-pixel-ratio: 1) {
+    body { font: 10px Helvetica, Arial; }
+    #card { 
         border: 10px;
         padding: 10px;
-        width: 100%;
-        background: #D5D5D5;
-        border: #181818;
-        font-size: 50px;
-    }
 
-    #inputs {
         position: absolute;
         top: 50%;
         left: 50%;
         margin-top: -50px;
-        margin-left: -200px;
-        width: 400px;
         height: 100px;
     }
 
-    #chatcount {
-        position: absolute;
-        top: 95%;
-        left: 0%;
-        width: 200px;
+    input {
+        background: #D5D5D5;
+        border: #181818;
+        font-size: 10px;
     }
 
-    #floater { 
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        font-family: "Comic Sans MS", "Comic Sans", cursive;
-        font-size: 50px;
+    #floater {
+        font-size: 30px;
     }
 }
 
-.floaterText { opacity: 0; }
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+and (min-device-width: 375px) 
+and (max-device-width: 667px) 
+and (-webkit-min-device-pixel-ratio: 2) { 
+    body { font: 20px Helvetica, Arial; }
+    #card { 
+        border: 10px;
+        padding: 10px;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        height: 100px;
+    }
+
+    input {
+        background: #D5D5D5;
+        border: #181818;
+        font-size: 10px;
+    }
+
+    #floater {
+        font-size: 30px;
+    }
+}
+
+/* ----------- iPhone X ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+and (min-device-width: 375px) 
+and (max-device-width: 812px) 
+and (-webkit-min-device-pixel-ratio: 3) { 
+    body { font: 20px Helvetica, Arial; }
+    #card { 
+        border: 10px;
+        padding: 10px;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        height: 100px;
+    }
+
+    input {
+        background: #D5D5D5;
+        border: #181818;
+        font-size: 10px;
+    }
+
+    #floater {
+        font-size: 30px;
+    }
+}

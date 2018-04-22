@@ -1,7 +1,8 @@
 <!doctype html>
-<html ng-app="myApp">
+<html>
   <head>
-    <title>Socket.IO chat</title>
+    <meta name="viewport" content="width=device-width">
+    <title>Welcome to BadChat!</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -11,9 +12,9 @@
   <body>
     <div id="floater">
     </div>
-    <div id="inputs">
-      <input id="messageField" autocomplete="off" autofocus/>
+    <div id="card">
+      <div id="chatcount">Current users connected: <span id="num_chatter">0</span></div>
+      <input id="messageField" placeholder="Enter some text here..." autocomplete="off" autofocus/>
     </div>
-    <div id="chatcount">Current users connected: <span id="num_chatter">0</span></div>
   </body>
 </html>

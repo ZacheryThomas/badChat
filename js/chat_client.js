@@ -5,10 +5,13 @@ VOICES = ["UK English Female", "UK English Male", "US English Female",
           "US English Male"
          ]
 
-COLORS = ["Crimson", "BlueViolet", "Blue", "DarkOrange", "DeepPink", "Fuchsia", "Gold", "LightSalmon", "LimeGreen",
-          "Orange", "Yellow"
+COLORS = ["Crimson", "BlueViolet", "Blue", "DarkOrange",
+          "DeepPink", "Fuchsia", "Gold", "LightSalmon",
+          "LimeGreen", "Orange"
          ]
+
 TILT_MAX = 20
+PADDING = 100
 
 $(document).ready(function() {
     var socket = io.connect(SOCKET_IP + ':' + SOCKET_PORT)
@@ -43,21 +46,26 @@ $(document).ready(function() {
         mwidth = $( window ).width()
         mheight = $( window ).height()
 
-        padding = 50
-
-        x = Math.floor(Math.random() * ((mwidth - padding) - padding) + padding);
-        y = Math.floor(Math.random() * ((mheight - padding) - padding) + padding);
+        x = Math.floor(Math.random() * (mwidth - PADDING));
+        y = Math.floor(Math.random() * (mheight - PADDING));
         roto = Math.floor(Math.random() * (TILT_MAX - -TILT_MAX) + -TILT_MAX);
         ele.css({top: y, left: x, position: 'absolute', transform: 'rotate(' + roto + 'deg)'});
     }
 
     function animEle(ele){
-        ele.animate({ opacity: 1 }, TEXT_ANIM_TIME/6);
-        ele.delay(TEXT_ANIM_TIME/6).animate({ opacity: 0 }, 4 * TEXT_ANIM_TIME/6);
 
-        setTimeout(function (){
-            ele.remove()
-        }, TEXT_ANIM_TIME);
+        ele.animate({ opacity: 1 }, TEXT_ANIM_TIME/6);
+ 
+        var clearer = setInterval(function (){
+            if (!responsiveVoice.isPlaying()){
+                console.log(!responsiveVoice.isPlaying())
+                ele.animate({ opacity: 0 }, 5 * TEXT_ANIM_TIME/6);
+                setTimeout(function (){
+                    ele.remove()
+                    clearInterval(clearer)
+                }, TEXT_ANIM_TIME);
+            }
+        }, 100);
     }
 
     function randomFromList(list){
