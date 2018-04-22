@@ -12,8 +12,11 @@ COLORS = ["Crimson", "BlueViolet", "Blue", "DarkOrange",
 
 TILT_MAX = 20
 PADDING = 100
+USER_EMOJI = ''
 
 $(document).ready(function() {
+    USER_EMOJI = random_emoji()
+
     var socket = io.connect(SOCKET_IP + ':' + SOCKET_PORT)
 
     $(document).mousemove( function(event) {
@@ -26,7 +29,7 @@ $(document).ready(function() {
 
     function send(){
         message = $("#messageField").val()
-        socket.emit('chat message', message)
+        socket.emit('chat message', {user: USER_EMOJI, message: message})
 
         // clear out text input
         $("#messageField").val("")
@@ -58,7 +61,6 @@ $(document).ready(function() {
  
         var clearer = setInterval(function (){
             if (!responsiveVoice.isPlaying()){
-                console.log(!responsiveVoice.isPlaying())
                 ele.animate({ opacity: 0 }, 5 * TEXT_ANIM_TIME/6);
                 setTimeout(function (){
                     ele.remove()
@@ -72,10 +74,13 @@ $(document).ready(function() {
         return list[Math.floor(Math.random() * list.length)];
     }
 
-    socket.on('chat message', function(msg){
+    socket.on('chat message', function(data){
+        user = data.user
+        msg = data.message
+
         id =  "val" + Math.floor(Math.random() * 1000);
         color = randomFromList(COLORS)
-        $("#floater").prepend('<div class="floaterText" style="color: ' + color + ';" id="' + id + '">' + msg + '</div>')
+        $("#floater").prepend('<div class="floaterText" style="color: ' + color + ';" id="' + id + '">' + user + ': ' + msg + '</div>')
 
         floater = $("#"+ id)
 
@@ -83,12 +88,11 @@ $(document).ready(function() {
         animEle(floater)
 
         var voice = randomFromList(VOICES);
-        console.log(voice)
         responsiveVoice.speak(msg, voice)
     });
 
     socket.on('num connections', function(msg){
-        console.log(msg)
+        console.log('num connections:', msg)
         $("#num_chatter").text(msg)
     });
 

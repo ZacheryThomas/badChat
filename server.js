@@ -10,6 +10,10 @@ app.get('/js/chat_client.js', function(req, res){
     res.sendfile('./js/chat_client.js');
 });
 
+app.get('/js/random_emoji.js', function(req, res){
+  res.sendfile('./js/random_emoji.js');
+});
+
 app.get('/css/style.css', function(req, res){
     res.sendfile('./css/style.css');
 });
