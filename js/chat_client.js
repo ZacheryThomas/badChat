@@ -1,5 +1,3 @@
-SOCKET_IP  = 'localhost'
-SOCKET_PORT = 80
 TEXT_ANIM_TIME   = 2000
 VOICES = ["UK English Female", "UK English Male", "US English Female",
           "US English Male"
@@ -17,7 +15,7 @@ USER_EMOJI = ''
 $(document).ready(function() {
     USER_EMOJI = random_emoji()
 
-    var socket = io.connect(SOCKET_IP + ':' + SOCKET_PORT)
+    var socket = io()
 
     $(document).mousemove( function(event) {
         $("#messageField").focus()
