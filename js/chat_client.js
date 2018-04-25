@@ -1,4 +1,4 @@
-SOCKET_IP  = 'localhost'
+SOCKET_IP  = '10.154.27.189'
 SOCKET_PORT = 80
 TEXT_ANIM_TIME   = 2000
 VOICES = ["UK English Female", "UK English Male", "US English Female",
@@ -11,7 +11,7 @@ COLORS = ["Crimson", "BlueViolet", "Blue", "DarkOrange",
          ]
 
 TILT_MAX = 20
-PADDING = 100
+PADDING = 200
 USER_EMOJI = ''
 
 $(document).ready(function() {
@@ -60,6 +60,7 @@ $(document).ready(function() {
         ele.animate({ opacity: 1 }, TEXT_ANIM_TIME/6);
  
         var clearer = setInterval(function (){
+            console.log(responsiveVoice.isPlaying())
             if (!responsiveVoice.isPlaying()){
                 ele.animate({ opacity: 0 }, 5 * TEXT_ANIM_TIME/6);
                 setTimeout(function (){
@@ -67,7 +68,7 @@ $(document).ready(function() {
                     clearInterval(clearer)
                 }, TEXT_ANIM_TIME);
             }
-        }, 100);
+        }, 250);
     }
 
     function randomFromList(list){
@@ -75,17 +76,19 @@ $(document).ready(function() {
     }
 
     socket.on('chat message', function(data){
+        console.log(data)
         user = data.user
         msg = data.message
 
         id =  "val" + Math.floor(Math.random() * 1000);
         color = randomFromList(COLORS)
-        $("#floater").prepend('<div class="floaterText" style="color: ' + color + ';" id="' + id + '">' + user + ': ' + msg + '</div>')
 
-        floater = $("#"+ id)
+        $("#floater").prepend('<div class="floaterText" style="color: ' + color + ';" id="' + id + '"></div>')
 
-        randomLocation(floater)
-        animEle(floater)
+        floaterDiv = $("#"+ id)
+        floaterDiv.text(user + ': ' + msg)
+        randomLocation(floaterDiv)
+        animEle(floaterDiv)
 
         var voice = randomFromList(VOICES);
         responsiveVoice.speak(msg, voice)
