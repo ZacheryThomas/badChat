@@ -1,4 +1,4 @@
-SOCKET_IP  = '10.154.27.189'
+SOCKET_IP  = 'localhost'
 SOCKET_PORT = 80
 TEXT_ANIM_TIME   = 2000
 VOICES = ["UK English Female", "UK English Male", "US English Female",
